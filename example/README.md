@@ -1,8 +1,8 @@
 ![](https://secureservercdn.net/160.153.137.91/nns.2aa.myftpupload.com/wp-content/uploads/thegem-logos/logo_02b434f906abd43095b870f23c028412_2x.png)
 
-# m7_livelyness_detection
+# live_photo_detector
 
-A Flutter package to detect livelyness of a face.
+A Flutter package to detect livelyness of a face. This package is extension of m7_livelyness_detection. This package was no longer maintained so I updated the package.
 
 ## Installation
 Nothing much complicated, just a few steps and you're good to go.

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:live_photo_detector/m7_livelyness_detection.dart';
 import 'package:m7_livelyness_detection_example/index.dart';
 
 class M7ExpampleScreen extends StatefulWidget {
@@ -209,18 +210,19 @@ class _M7ExpampleScreenState extends State<M7ExpampleScreen> {
         Center(
           child: ElevatedButton(
             onPressed: _onStartLivelyness,
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 20,
-              ),
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 12
             ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          ),
             child: const Text(
               "Detect Livelyness",
               style: TextStyle(
-                color: Colors.white,
+                
                 fontSize: 22,
-                fontWeight: FontWeight.w600,
+                
               ),
             ),
           ),

@@ -1,12 +1,12 @@
 class M7AssetConstants {
-  static const packageName = "m7_livelyness_detection";
+  static const packageName = "live_photo_detector";
   static _M7LottieAssets lottie = _M7LottieAssets();
   static _M7ImageAssets images = _M7ImageAssets();
 }
 
 class _M7ImageAssets {
   String get _initPath {
-    return "packages/m7_livelyness_detection/src/assets";
+    return "packages/live_photo_detector/src/assets";
   }
 
   String get mesh {

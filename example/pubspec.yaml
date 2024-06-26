@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  m7_livelyness_detection:
+  live_photo_detector:
     # When depending on this package from a real application you should use:
     #   m7_livelyness_detection: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
@@ -30,9 +30,9 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  lottie: ^2.1.0
-  collection: ^1.16.0
+  cupertino_icons: ^1.0.8
+  lottie: ^3.1.2
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:

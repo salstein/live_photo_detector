@@ -1,4 +1,4 @@
-import 'package:m7_livelyness_detection/index.dart';
+import 'package:live_photo_detector/index.dart';
 
 class M7DetectionConfig {
   /// Types of checks to be added while detecting the face.

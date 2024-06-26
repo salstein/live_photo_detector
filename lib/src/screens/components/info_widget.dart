@@ -1,4 +1,4 @@
-import 'package:m7_livelyness_detection/index.dart';
+import 'package:live_photo_detector/index.dart';
 
 class M7LivelynessInfoWidget extends StatefulWidget {
   final VoidCallback onStartTap;
@@ -72,7 +72,7 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 4,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 40,
@@ -94,33 +94,38 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
-                          child: Container(
-                            child: _buildPointWidget(
-                              index: 1,
-                              title: M7StringConstants.label.goodLighting,
-                              subTitle:
-                                  M7StringConstants.label.goodLightingSubText,
-                            ),
+                     const SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Center(
+                        child: Container(
+                          child: _buildPointWidget(
+                            index: 1,
+                            title: M7StringConstants.label.goodLighting,
+                            subTitle:
+                                M7StringConstants.label.goodLightingSubText,
                           ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(
-                          child: _buildPointWidget(
-                            index: 2,
-                            title: M7StringConstants.label.lookStraight,
-                            subTitle:
-                                M7StringConstants.label.lookStraightSubText,
-                          ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Center(
+                        child: _buildPointWidget(
+                          index: 2,
+                          title: M7StringConstants.label.lookStraight,
+                          subTitle:
+                              M7StringConstants.label.lookStraightSubText,
                         ),
                       ),
+                    ),
+                     const SizedBox(
+                      height: 40,
                     ),
                   ],
                 ),
@@ -147,9 +152,9 @@ class _M7LivelynessInfoWidgetState extends State<M7LivelynessInfoWidget> {
                 M7StringConstants.button.start,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: Colors.white,
+               
                   fontWeight: FontWeight.w500,
-                  fontSize: 24,
+                  fontSize: 20,
                 ),
               ),
             ),

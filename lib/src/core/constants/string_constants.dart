@@ -8,7 +8,7 @@ class _M7LabelStrings {
   final String goodLighting = "Good Lighting";
   final String lookStraight = "Look Straight";
   final String goodLightingSubText =
-      "Make sure you are in a well lit area and both ears are uncovered";
+      "Make sure you are in a well lit area and nothing is on your face";
   final String lookStraightSubText =
       "Hold your phone at eye level and look straight to the camera";
   final String infoSubText =

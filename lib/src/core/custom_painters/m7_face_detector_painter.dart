@@ -1,7 +1,7 @@
 import 'dart:math';
 
 //sky_engine/lib/ui/painting.dart
-import 'package:m7_livelyness_detection/index.dart';
+import 'package:live_photo_detector/index.dart';
 
 class M7FaceDetectorPainter extends CustomPainter {
   M7FaceDetectorPainter(

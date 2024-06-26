@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:collection/collection.dart';
-import 'package:m7_livelyness_detection/index.dart';
+import 'package:live_photo_detector/index.dart';
 
 List<CameraDescription> availableCams = [];
 
@@ -35,7 +35,6 @@ class _MLivelyness7DetectionScreenState
   bool _isTakingPicture = false;
   Timer? _timerToDetectFace;
   bool _isCaptureButtonVisible = false;
-
   late final List<M7LivelynessStepItem> _steps;
 
   //* MARK: - Life Cycle Methods
@@ -117,36 +116,54 @@ class _MLivelyness7DetectionScreenState
 
   void _startLiveFeed() async {
     final camera = availableCams[_cameraIndex];
-    // _cameraController = CameraController(
-    //   camera,
-    //   ResolutionPreset.high,
-    //   imageFormatGroup: ImageFormatGroup.jpeg,
-    //   enableAudio: false,
-    // );
-    // _cameraController?.initialize().then((_) {
-    //   if (!mounted) {
-    //     return;
-    //   }
-    //   _cameraController?.startImageStream(_processCameraImage);
-    //   if (mounted) {
-    //     _startTimer();
-    //     setState(() {});
-    //   }
-    // });
     _cameraController = CameraController(
       camera,
       ResolutionPreset.high,
       enableAudio: false,
     );
-    _cameraController?.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
+    try {
+      await _cameraController!.initialize();
+      if (!mounted) return;
       _startTimer();
-      _cameraController?.startImageStream(_processCameraImage);
+      await _cameraController!.startImageStream(_processCameraImage);
       setState(() {});
-    });
+    } catch (e) {
+      print("Error starting camera feed: $e");
+    }
   }
+
+  // void _startLiveFeed() async {
+  //   final camera = availableCams[1];
+  //   // _cameraController = CameraController(
+  //   //   camera,
+  //   //   ResolutionPreset.high,
+  //   //   imageFormatGroup: ImageFormatGroup.jpeg,
+  //   //   enableAudio: false,
+  //   // );
+  //   // _cameraController?.initialize().then((_) {
+  //   //   if (!mounted) {
+  //   //     return;
+  //   //   }
+  //   //   _cameraController?.startImageStream(_processCameraImage);
+  //   //   if (mounted) {
+  //   //     _startTimer();
+  //   //     setState(() {});
+  //   //   }
+  //   // });
+  //   _cameraController = CameraController(
+  //     camera,
+  //     ResolutionPreset.high,
+  //     enableAudio: false,
+  //   );
+  //   _cameraController?.initialize().then((_) {
+  //     if (!mounted) {
+  //       return;
+  //     }
+  //     _startTimer();
+  //     _cameraController?.startImageStream(_processCameraImage);
+  //     setState(() {});
+  //   });
+  // }
 
   Future<void> _processCameraImage(CameraImage cameraImage) async {
     final WriteBuffer allBytes = WriteBuffer();
@@ -170,27 +187,18 @@ class _MLivelyness7DetectionScreenState
       cameraImage.format.raw,
     );
     if (inputImageFormat == null) return;
+    final planeData = cameraImage.planes.first.bytesPerRow;
 
-    final planeData = cameraImage.planes.map(
-      (Plane plane) {
-        return InputImagePlaneMetadata(
-          bytesPerRow: plane.bytesPerRow,
-          height: plane.height,
-          width: plane.width,
-        );
-      },
-    ).toList();
-
-    final inputImageData = InputImageData(
+    final inputImageData = InputImageMetadata(
       size: imageSize,
-      imageRotation: imageRotation,
-      inputImageFormat: inputImageFormat,
-      planeData: planeData,
+      rotation: imageRotation,
+      format: inputImageFormat,
+      bytesPerRow: planeData,
     );
 
     final inputImage = InputImage.fromBytes(
       bytes: bytes,
-      inputImageData: inputImageData,
+      metadata: inputImageData,
     );
 
     _processImage(inputImage);
@@ -203,16 +211,16 @@ class _MLivelyness7DetectionScreenState
     _isBusy = true;
     final faces = await M7MLHelper.instance.processInputImage(inputImage);
 
-    if (inputImage.inputImageData?.size != null &&
-        inputImage.inputImageData?.imageRotation != null) {
+    if (inputImage.metadata?.size != null &&
+        inputImage.metadata?.rotation != null) {
       if (faces.isEmpty) {
         _resetSteps();
       } else {
         final firstFace = faces.first;
         final painter = M7FaceDetectorPainter(
           firstFace,
-          inputImage.inputImageData!.size,
-          inputImage.inputImageData!.imageRotation,
+          inputImage.metadata!.size,
+          inputImage.metadata!.rotation,
         );
         _customPaint = CustomPaint(
           painter: painter,
@@ -440,6 +448,20 @@ class _MLivelyness7DetectionScreenState
     );
   }
 
+  void _switchCamera() async {
+    if (availableCams.length < 2) {
+      return;
+    }
+    _cameraIndex = (_cameraIndex + 1) % 2;
+    await _cameraController?.dispose();
+    _cameraController = null;
+    _startLiveFeed();
+  }
+
+  bool _isAnyStepCompleted() {
+    return _steps.any((step) => step.isCompleted);
+  }
+
   Widget _buildDetectionBody() {
     if (_cameraController == null ||
         _cameraController?.value.isInitialized == false) {
@@ -457,15 +479,17 @@ class _MLivelyness7DetectionScreenState
         Center(
           child: cameraView,
         ),
-        BackdropFilter(
-          filter: ui.ImageFilter.blur(
-            sigmaX: 5.0,
-            sigmaY: 5.0,
-          ),
-          child: Container(
-            color: Colors.transparent,
-            width: double.infinity,
-            height: double.infinity,
+        IgnorePointer(
+          child: BackdropFilter(
+            filter: ui.ImageFilter.blur(
+              sigmaX: 5.0,
+              sigmaY: 5.0,
+            ),
+            child: Container(
+              color: Colors.transparent,
+              width: double.infinity,
+              height: double.infinity,
+            ),
           ),
         ),
         Center(
@@ -504,6 +528,30 @@ class _MLivelyness7DetectionScreenState
               ),
               const Spacer(),
             ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, bottom: 10),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    _switchCamera();
+                  },
+                  child: const CircleAvatar(
+                    radius: 24,
+                    backgroundColor: Colors.black,
+                    child: Icon(
+                      Icons.switch_camera,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

@@ -1,6 +1,7 @@
-# m7_livelyness_detection
+# live_photo_detector
 
-<img src="https://storage.googleapis.com/meet7_assets/meet7_app_icon.png" alt="drawing" width="190"/>
+A Flutter package to detect livelyness of a face. This package is extension of m7_livelyness_detection. This package was no longer maintained so I updated the package.
+
 
 ![](https://img.shields.io/badge/meet7-open--source-purple?style=for-the-badge) ![](https://img.shields.io/pub/publisher/m7_livelyness_detection?color=purple&style=for-the-badge) ![](https://img.shields.io/github/issues-raw/Meet-7-dating/m7_livelyness_detection?style=for-the-badge&&logo=github) ![](https://img.shields.io/github/languages/count/Meet-7-dating/m7_livelyness_detection?style=for-the-badge&&logo=github)
 ![](https://img.shields.io/pub/likes/m7_livelyness_detection?style=for-the-badge&logo=dart) ![](https://img.shields.io/pub/points/m7_livelyness_detection?style=for-the-badge&logo=dart) ![](https://img.shields.io/pub/popularity/m7_livelyness_detection?style=for-the-badge&logo=dart) ![](https://img.shields.io/pub/publisher/m7_livelyness_detection?style=for-the-badge) ![](https://img.shields.io/pub/v/m7_livelyness_detection?style=for-the-badge&logo=dart)
@@ -50,12 +51,12 @@ First, we have to install the package on flutter.
 <a name="flutterSetup"></a>
 #### Flutter Setup
 
-Add `m7_livelyness_detection` to your `pubspec.yaml` dependencies.
+Add `live_photo_detector` to your `pubspec.yaml` dependencies.
 
 <a name="flutterSetupUsingCommandLine"></a>
 ##### Using command-line
 ```sh
-flutter pub add m7_livelyness_detection
+flutter pub add live_photo_detector
 ```
 
 <a name="flutterSetupNativeSetup"></a>
@@ -135,4 +136,5 @@ https://user-images.githubusercontent.com/106381741/210200724-ae4af9cc-ffeb-49e4
 | Developers  |  |
 | ------------- | ------------- |
 | Sagar Ghag  | <a href="https://github.com/Meet-7-dating/m7_livelyness_detection/graphs/contributors"><img src="https://contrib.rocks/image?repo=Meet-7-dating/m7_livelyness_detection" /></a>  |
-| Omkar Tralsawala  | <a href="https://github.com/Meet-7-dating/m7_livelyness_detection/graphs/contributors"><img src="https://storage.googleapis.com/meet7_assets/archive/omkar-tralsawala-modified.png" width="65" height="65" /></a>  |
+| Omkar Tralsawala  | <a href="https://github.com/Meet-7-dating/m7_livelyness_detection/graphs/contributors"><img src="https://scontent.fmaa1-3.fna.fbcdn.net/v/t1.6435-9/41627522_2038943262823344_4873941007898509312_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=x749roeOxtsQ7kNvgEGFhwY&_nc_ht=scontent.fmaa1-3.fna&oh=00_AYCQ9hNGQQjQrN2IhWTRNOk93mvQgWyQQ1VO4IpgJvyHLw&oe=66A38C76" width="65" height="65" /></a>  |
+| Puneet Raj  | <a href="https://github.com/hoenkava"><img src="https://instagram.fmaa1-2.fna.fbcdn.net/v/t51.29350-15/341182132_753739529797671_7683217585832025113_n.webp?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi42MzV4NjM1LnNkci5mMjkzNTAifQ&_nc_ht=instagram.fmaa1-2.fna.fbcdn.net&_nc_cat=103&_nc_ohc=mkt4enBRMtYQ7kNvgF0nNXW&edm=ANTKIIoBAAAA&ccb=7-5&oh=00_AYDrWEkEFTiStVxmOZrQ7W_-_rZXkUlTLLMLlXFqSl8yQQ&oe=6681F07F&_nc_sid=d885a2" /></a>

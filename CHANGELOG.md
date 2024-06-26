@@ -1,20 +1,4 @@
-## 0.0.4+5
-
-* Added `Index` in the documentation.
-* Minor Bug Fixes.
-
-## 0.0.4+4
-
-* Minor Bug Fixes.
-## 0.0.4+3
-
-* Minor Bug Fixes.
-
-## 0.0.4+2
-
-* Android issue resilved.
-
-## 0.0.4+1
+## 1.0.1
 
 * When allowing the user to capture even after the `maxSecToDetect` seconds have passed, the background color can be set accordingly.
 ```dart
