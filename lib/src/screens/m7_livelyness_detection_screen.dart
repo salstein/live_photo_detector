@@ -36,6 +36,9 @@ class _MLivelyness7DetectionScreenState
   Timer? _timerToDetectFace;
   bool _isCaptureButtonVisible = false;
   late final List<M7LivelynessStepItem> _steps;
+  List<Face> _previousFaces = [];
+  int _stableFrameCount = 0;
+  static const int _requiredStableFrames = 10;
 
   //* MARK: - Life Cycle Methods
   //? =========================================================
@@ -213,9 +216,24 @@ class _MLivelyness7DetectionScreenState
 
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
-      if (faces.isEmpty) {
-        _resetSteps();
-      } else {
+      if (faces.isNotEmpty) {
+        if (_detectMotion(faces.first)) {
+          _stableFrameCount = 0;
+        } else {
+          _stableFrameCount++;
+        }
+        if (_stableFrameCount >= _requiredStableFrames) {
+          // If the face is too stable for too long, it might be a static image
+          _resetSteps();
+          // Optionally, notify the user that a live face is required
+        } else {
+          // Continue with existing detection logic
+          _detect(
+              face: faces.first,
+              step: _steps[_stepsKey.currentState?.currentIndex ?? 0].step);
+        }
+
+        _previousFaces = faces;
         final firstFace = faces.first;
         final painter = M7FaceDetectorPainter(
           firstFace,
@@ -250,6 +268,8 @@ class _MLivelyness7DetectionScreenState
           face: faces.first,
           step: _steps[_stepsKey.currentState?.currentIndex ?? 0].step,
         );
+      } else {
+        _resetSteps();
       }
     } else {
       _resetSteps();
@@ -351,6 +371,20 @@ class _MLivelyness7DetectionScreenState
       return;
     }
     switch (step) {
+      case M7LivelynessStep.motion:
+        if (_detectMotion(face)) {
+          _stableFrameCount = 0;
+          _startProcessing();
+          await _completeStep(step: step);
+        } else {
+          _stableFrameCount++;
+          if (_stableFrameCount >= _requiredStableFrames) {
+            // If the face is too stable for too long, it might be a static image
+            _resetSteps();
+            // Optionally, notify the user that motion is required
+          }
+        }
+        break;
       case M7LivelynessStep.blink:
         final M7BlinkDetectionThreshold? blinkThreshold =
             M7LivelynessDetection.instance.thresholdConfig.firstWhereOrNull(
@@ -446,6 +480,24 @@ class _MLivelyness7DetectionScreenState
         ),
       ],
     );
+  }
+
+  bool _detectMotion(Face currentFace) {
+    if (_previousFaces.isEmpty) return true;
+
+    final previousFace = _previousFaces.first;
+    const double threshold = 2.0; // Adjust this value based on your needs
+
+    // Check for changes in face position or expression
+    return (currentFace.boundingBox.left - previousFace.boundingBox.left)
+                .abs() >
+            threshold ||
+        (currentFace.boundingBox.top - previousFace.boundingBox.top).abs() >
+            threshold ||
+        (currentFace.headEulerAngleY! - previousFace.headEulerAngleY!).abs() >
+            threshold ||
+        (currentFace.headEulerAngleZ! - previousFace.headEulerAngleZ!).abs() >
+            threshold;
   }
 
   void _switchCamera() async {

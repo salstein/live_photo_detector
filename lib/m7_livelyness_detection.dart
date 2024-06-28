@@ -48,6 +48,7 @@ class M7LivelynessDetection {
         builder: (context) => M7LivelynessDetectionScreen(
           config: config,
         ),
+        
       ),
     );
     return capturedFacePath;

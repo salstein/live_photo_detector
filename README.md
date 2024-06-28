@@ -132,4 +132,4 @@ https://user-images.githubusercontent.com/106381741/210200724-ae4af9cc-ffeb-49e4
 <a name="contributors"></a>
 ## Contributors
 
-| Puneet Raj  | <a href="https://github.com/hoenkava"><img src="https://instagram.fmaa1-2.fna.fbcdn.net/v/t51.29350-15/341182132_753739529797671_7683217585832025113_n.webp?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi42MzV4NjM1LnNkci5mMjkzNTAifQ&_nc_ht=instagram.fmaa1-2.fna.fbcdn.net&_nc_cat=103&_nc_ohc=mkt4enBRMtYQ7kNvgF0nNXW&edm=ANTKIIoBAAAA&ccb=7-5&oh=00_AYDrWEkEFTiStVxmOZrQ7W_-_rZXkUlTLLMLlXFqSl8yQQ&oe=6681F07F&_nc_sid=d885a2" /></a>
+| Puneet Raj  | <a href="https://github.com/hoenkava"><img src="https://iili.io/dFJJhNV.png" /></a>

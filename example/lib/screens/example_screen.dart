@@ -90,6 +90,8 @@ class _M7ExpampleScreenState extends State<M7ExpampleScreen> {
 
   String _getTitle(M7LivelynessStep step) {
     switch (step) {
+      case M7LivelynessStep.motion:
+        return "Motion";
       case M7LivelynessStep.blink:
         return "Blink";
       case M7LivelynessStep.turnLeft:
@@ -103,6 +105,8 @@ class _M7ExpampleScreenState extends State<M7ExpampleScreen> {
 
   String _getSubTitle(M7LivelynessStep step) {
     switch (step) {
+       case M7LivelynessStep.motion:
+        return "Detects motion on the face visible in camera";
       case M7LivelynessStep.blink:
         return "Detects Blink on the face visible in camera";
       case M7LivelynessStep.turnLeft:

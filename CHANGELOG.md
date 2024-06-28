@@ -1,4 +1,4 @@
-## 1.0.3
+## 1.0.4
 
 * When allowing the user to capture even after the `maxSecToDetect` seconds have passed, the background color can be set accordingly.
 ```dart
