@@ -132,4 +132,4 @@ https://user-images.githubusercontent.com/106381741/210200724-ae4af9cc-ffeb-49e4
 <a name="contributors"></a>
 ## Contributors
 
-<a href="https://github.com/hoenkava"><img src="https://iili.io/dFJJhNV.png" height="100"/></a><br />Puneet Raj
+<a href="https://github.com/hoenkava"><img src="https://iili.io/dFJJhNV.png" height="100"/></a><br/>Puneet Raj
