@@ -1,4 +1,7 @@
 import 'dart:math';
+import 'package:live_photo_detector/index.dart';
+
+
 
 class M7Utils {
   static Point<int> middlePoint({
@@ -15,4 +18,7 @@ class M7Utils {
       (p1 + q1) ~/ 2,
     );
   }
+  //   static String generate() {
+  //   return const Uuid().v4();
+  // }
 }
