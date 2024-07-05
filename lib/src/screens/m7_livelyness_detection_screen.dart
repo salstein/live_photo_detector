@@ -307,12 +307,12 @@ class _MLivelyness7DetectionScreenState
             color: Colors.transparent,
             height: double.infinity,
             width: double.infinity,
-            margin:  EdgeInsets.only(
-              // top: 60,
-              // bottom: 60,
-              // top: MediaQuery.of(context).padding.top,
-              // bottom: MediaQuery.of(context).padding.bottom,
-            ),
+            margin: EdgeInsets.only(
+                // top: 60,
+                // bottom: 60,
+                // top: MediaQuery.of(context).padding.top,
+                // bottom: MediaQuery.of(context).padding.bottom,
+                ),
           ),
         );
         if (_isProcessingStep &&
@@ -364,9 +364,15 @@ class _MLivelyness7DetectionScreenState
     if (Platform.isAndroid) {
       try {
         if (_cameraState == null) {
-          _onDetectionCompleted();
+          if (mounted) _onDetectionCompleted(); // Add this check
           return;
         }
+        if (_isTakingPicture) {
+          return;
+        }
+        setState(
+          () => _isTakingPicture = true,
+        );
         _cameraState?.when(
           onPhotoMode: (p0) => Future.delayed(
             const Duration(milliseconds: 500),
@@ -416,6 +422,8 @@ class _MLivelyness7DetectionScreenState
   void _onDetectionCompleted({
     XFile? imgToReturn,
   }) {
+    if (!mounted) return; // Add this line
+
     final String? imgPath = imgToReturn?.path;
     print('$imgPath image ki value');
     Navigator.of(context).pop(imgPath);
@@ -643,7 +651,6 @@ class _MLivelyness7DetectionScreenState
                       fit: StackFit.expand,
                       children: [
                         if (_customPaint != null) _customPaint!,
-                        
                       ],
                     );
                   },
@@ -665,32 +672,32 @@ class _MLivelyness7DetectionScreenState
               steps: _steps,
               onCompleted: () => _takePicture(),
             ),
-          Visibility(
-            visible: _isCaptureButtonVisible,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Spacer(
-                  flex: 20,
-                ),
-                MaterialButton(
-                  onPressed: () => _takePicture(),
-                  color: widget.config.captureButtonColor ??
-                      Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(16),
-                  shape: const CircleBorder(),
-                  child: const Icon(
-                    Icons.camera_alt,
-                    size: 24,
-                  ),
-                ),
-                const Spacer(),
-              ],
-            ),
-          ),
+          // Visibility(
+          //   visible: _isCaptureButtonVisible,
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     crossAxisAlignment: CrossAxisAlignment.stretch,
+          //     mainAxisSize: MainAxisSize.min,
+          //     children: [
+          //       const Spacer(
+          //         flex: 20,
+          //       ),
+          //       MaterialButton(
+          //         onPressed: () => _takePicture(),
+          //         color: widget.config.captureButtonColor ??
+          //             Theme.of(context).primaryColor,
+          //         textColor: Colors.white,
+          //         padding: const EdgeInsets.all(16),
+          //         shape: const CircleBorder(),
+          //         child: const Icon(
+          //           Icons.camera_alt,
+          //           size: 24,
+          //         ),
+          //       ),
+          //       const Spacer(),
+          //     ],
+          //   ),
+          // ),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
