@@ -4,7 +4,6 @@ import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:collection/collection.dart';
 import 'package:live_photo_detector/index.dart';
 import 'package:live_photo_detector/src/core/helpers/analysistoinputimage.dart';
-import 'package:path_provider/path_provider.dart';
 
 List<CameraDescription> availableCams = [];
 

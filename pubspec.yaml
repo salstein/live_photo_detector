@@ -1,7 +1,7 @@
 name: live_photo_detector
 description: A single function package to detect weather the face visible in the
   camera is a live face or not.
-version: 1.0.4
+version: 1.0.5
 homepage: https://github.com/hoenkava/live_photo_detector
 repository: https://github.com/hoenkava/live_photo_detector/
 issue_tracker: https://github.com/hoenkava/live_photo_detector/issues
@@ -21,7 +21,6 @@ dependencies:
   google_mlkit_face_detection: ^0.11.0
   image: ^4.1.3
   lottie: ^3.1.2
-  path_provider: ^2.1.3
   plugin_platform_interface: ^2.0.2
 
 dependency_overrides:

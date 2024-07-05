@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:live_photo_detector/index.dart';
 
 
 

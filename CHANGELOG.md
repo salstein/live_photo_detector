@@ -1,4 +1,6 @@
-## 1.0.4
+## 1.0.5
+
+*Face Recognition not Working in Redmi and One Plus Fixed
 
 * When allowing the user to capture even after the `maxSecToDetect` seconds have passed, the background color can be set accordingly.
 ```dart

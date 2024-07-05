@@ -37,11 +37,11 @@ Liveness detection for face recognition in biometrics is a technique where an al
   allowfullscreen>
 </iframe>
 
-<a name="platformSupport"></a>
 ## Platform Support
+
 | iOS | Android | MacOS | Web | Linux | Windows |
 | :-: | :----: | :---: | :-: | :---: | :----: |
-|   ✔️    | ✔️  |  <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>   | <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>  |  <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>   |   <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>
+|   ✔️    | ✔️  |  <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>   | <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>  |  <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>   |   <iframe src="https://embed.lottiefiles.com/animation/96163" height="25" width="25"></iframe>   |
 
 <a name="installation"></a>
 ## Installation
